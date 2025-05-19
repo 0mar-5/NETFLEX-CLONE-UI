@@ -4,11 +4,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="img/netflix-favIcon.png" />
+  <link rel="icon" href="../assets/img/netflix-favIcon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/styles/style.css" />
   <title>NETFLIX CLONE</title>
 </head>
 
 <body>
+  <div class="bg__container">
+    <!-- Header navbar -->
+    <header class="navbar">
+      <div class="container flex_container">
+        <a href="#" class="logo">
+          <img src="../assets/img/netflixClone-logo.svg" />
+        </a>
+
+        <nav class="navbar__links">
+          <ul>
+            <li>
+              <a href="#">Sign In</a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="hero__content">
+        <h1>Unlimited movies, TV shows, and more</h1>
+        <p>Starts at EGP $$$. Cancel anytime.</p>
+        <h3>Ready to watch? Enter your email to create or restart your membership.</h3>
+        <a href="#" class="hero__content__btn">
+          Get Started
+          <img src="../assets/img/arrowRightWhite.svg" alt="arrow right" />
+        </a>
+      </div>
+    </section>
+
+  </div>
+  <!-- overlay background -->
+  <div class="overlay"></div>
+
+  <div class="border__bg"></div>
+
+
+  <!-- image slider -->
+  <section class="slider__section">
+    <div class="container">
+
+      <h2>Trending Now</h2>
+
+      <div class="slider-container">
+        <button class="arrow left" id="arrow_left">&#10094;</button>
+        <div class="slider" id="cardSlider">
+          <!-- render movies here from js -->
+        </div>
+        <button class="arrow right" id="arrow_right">&#10095;</button>
+      </div>
+
+    </div>
+  </section>
+  <!--  ReasonsTo Join section -->
+  <section class="reasonsToJoin">
+    <div class="container">
+      <h2>More Reasons to Join</h2>
+      <div class="reasonsToJoin__cards">
+
+        <div class="reasonsToJoin__cards__card">
+          <h3>Enjoy on your TV</h3>
+          <p>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+          <div class="reasonsToJoin__cards__card__img">
+            <img src="../assets/img/tv-icon.png" alt="tv icon" />
+          </div>
+        </div>
+
+        <div class="reasonsToJoin__cards__card">
+          <h3>Download your shows to watch offline</h3>
+          <p>Save your favorites easily and always have something to watch.</p>
+          <div class="reasonsToJoin__cards__card__img">
+            <img src="../assets/img/arrow-down-icon.png" alt="arrow down icon" />
+          </div>
+        </div>
+
+        <div class="reasonsToJoin__cards__card">
+          <h3>Watch everywhere</h3>
+          <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+          <div class="reasonsToJoin__cards__card__img">
+            <img src="../assets/img/tele-icon.png" alt="telescope icon" />
+          </div>
+        </div>
+
+
+        <div class="reasonsToJoin__cards__card">
+          <h3>Create profiles for kids</h3>
+          <p>Send kids on adventures with their favorite characters in a space made just for them — free with your
+            membership.</p>
+          <div class="reasonsToJoin__cards__card__img">
+            <img src="../assets/img/face-icon.png" alt="face icon" />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- footer section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__container">
+        <ul class="footer__links">
+          <li><a href="#"><img src="../assets/img/Facebook.png" alt="facebook icon"></a></li>
+          <li><a href="#"><img src="../assets/img/Twitter.png" alt="twitter icon"></a></li>
+          <li><a href="#"><img src="../assets/img/YouTube.png" alt="youtube icon"></a></li>
+          <li><a href="#"><img src="../assets/img/Instagram.png" alt="instagram icon"></a></li>
+        </ul>
+
+        <p>&copy; NETFLIX CLONE , 2025</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
 
 </body>
 
