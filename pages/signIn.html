@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="NETFLEX clone" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/img/netflix-favIcon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/styles/general.css" />
+  <link rel="stylesheet" href="../assets/styles/signIn.css" />
+  <title>NETFLIX CLONE | SIGN IN</title>
+</head>
+
+<body>
+  <header class="logo container">
+    <a href="./index.html">
+      <img src="../assets/img/netflixClone-logo.svg" alt="netflix Clone logo" />
+    </a>
+  </header>
+
+  <section class="login">
+    <div class="container">
+      <form class="login__form">
+        <h3>Sign In</h3>
+        <input type="email" id="email" placeholder="Enter your Email" />
+        <span class="login__form_error" id="email_error">please enter a valid email address.</span>
+        <input type="password" id="password" placeholder="password" />
+        <span class="login__form_error" id="password_error">Password must be at least 8 characters long.</span>
+        <button type="submit">Sign In</button>
+
+      </form>
+      <label class="checkbox__contanier">
+        <input type="checkbox" id="remember" name="remember-me">
+        Remember me
+      </label>
+
+
+      <div class="login__signup">
+        <p>New to Netflix? </p>
+        <a href="#">Sign up now.</a>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- overlay background -->
+  <div class="overlay"></div>
+
+  <script src="../assets/js/signIn.js"></script>
+</body>
+
+</html>
