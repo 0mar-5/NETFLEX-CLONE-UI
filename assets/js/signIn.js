@@ -1,7 +1,32 @@
 const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
 const emailError = document.getElementById("email_error");
+const passwordInput = document.getElementById("password");
 const passwordError = document.getElementById("password_error");
+
+const userNameInput = document.getElementById("userName");
+const userNameError = document.getElementById("userName_error");
+
+const confirmPassword = document.getElementById("confirm-password");
+const confirmPasswordError = document.getElementById("confirmPassword_error");
+
+// validate user name
+function userNameInputValidation() {
+  let isValid = true;
+  let regexTask = /^.{4,}$/;
+  userNameError.classList.remove("show");
+
+  if (!regexTask.test(userNameInput.value)) {
+    userNameInput.classList.add("input-error");
+    userNameError.classList.add("show");
+
+    isValid = false;
+  } else {
+    userNameInput.classList.remove("input-error");
+    userNameError.classList.remove("show");
+  }
+
+  return isValid;
+}
 
 // validate email address
 function emailInputValidation() {
@@ -41,5 +66,26 @@ function passwordInputValidation() {
   return isValid;
 }
 
+// validate confirm password
+function confirmPasswordInputValidation() {
+  let isValid = true;
+
+  confirmPasswordError.classList.remove("show");
+
+  if (passwordInput.value !== confirmPassword.value) {
+    confirmPassword.classList.add("input-error");
+    confirmPasswordError.classList.add("show");
+
+    isValid = false;
+  } else {
+    confirmPassword.classList.remove("input-error");
+    confirmPasswordError.classList.remove("show");
+  }
+
+  return isValid;
+}
+
+userNameInput.addEventListener("input", userNameInputValidation);
 emailInput.addEventListener("input", emailInputValidation);
 passwordInput.addEventListener("input", passwordInputValidation);
+confirmPassword.addEventListener("input", confirmPasswordInputValidation);

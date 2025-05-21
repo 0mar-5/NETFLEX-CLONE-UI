@@ -1,6 +1,6 @@
 .bg__container {
-  background-image: url(../img/main-page-bg.jpg);
-  background-position: center;
+  background-image: url(../img/netflext-bg.jpg);
+  background-position: bottom;
   background-size: cover;
 }
 
@@ -23,8 +23,6 @@
 }
 
 .navbar__links a {
-  font-size: 1.4rem;
-  font-weight: 500;
   padding: 0.4rem 1.6rem;
   border-radius: 0.4rem;
   background-color: var(--netflix-main-red);
@@ -75,8 +73,6 @@
 .hero__content__btn {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 1rem;
   font-size: 2.4rem;
   font-weight: 500;
   background-color: var(--netflix-main-red);
