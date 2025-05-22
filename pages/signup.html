@@ -27,15 +27,15 @@
     <div class="container">
       <form class="login__form">
         <h3>Sign Up</h3>
-        <input class="input_padding" type="text" id="userName" placeholder="Enter your user name" />
+        <input class="input_padding" type="text" id="user_Name" placeholder="Enter your user name" />
         <span class="login__form_error" id="userName_error">please enter a user name at lest 4 characters long</span>
-        <input class="input_padding" type="email" id="email" placeholder="Enter your Email" />
-        <span class="login__form_error" id="email_error">please enter a valid email address</span>
-        <input class="input_padding" type="password" id="password" placeholder="password" />
-        <span class="login__form_error" id="password_error">Password must be at least 8 characters long</span>
+        <input class="input_padding" type="email" id="signUp-email" placeholder="Enter your Email" />
+        <span class="login__form_error" id="signUpEmail_error">please enter a valid email address</span>
+        <input class="input_padding" type="password" id="signUpPassword" placeholder="password" />
+        <span class="login__form_error" id="signUpPassword_error">Password must be at least 6 characters long</span>
         <input class="input_padding" type="password" id="confirm-password" placeholder="confirm password" />
         <span class="login__form_error" id="confirmPassword_error">Password do not match</span>
-        <button type="submit">Sign Up</button>
+        <button type="submit" id="signUp">Sign Up</button>
 
       </form>
 
@@ -46,7 +46,8 @@
   <!-- overlay background -->
   <div class="overlay"></div>
 
-  <script src="../assets/js/signIn.js"></script>
+  <!-- <script src="../assets/js/signIn.js"></script> -->
+  <script type="module" src="../assets/js/signUp.js"></script>
 </body>
 
 </html>

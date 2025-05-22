@@ -1,35 +1,13 @@
-const emailInput = document.getElementById("email");
+// --- sign-in DOM Elements ---
+
 const emailError = document.getElementById("email_error");
+const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const passwordError = document.getElementById("password_error");
-
-const userNameInput = document.getElementById("userName");
-const userNameError = document.getElementById("userName_error");
-
-const confirmPassword = document.getElementById("confirm-password");
-const confirmPasswordError = document.getElementById("confirmPassword_error");
-
-// validate user name
-function userNameInputValidation() {
-  let isValid = true;
-  let regexTask = /^.{4,}$/;
-  userNameError.classList.remove("show");
-
-  if (!regexTask.test(userNameInput.value)) {
-    userNameInput.classList.add("input-error");
-    userNameError.classList.add("show");
-
-    isValid = false;
-  } else {
-    userNameInput.classList.remove("input-error");
-    userNameError.classList.remove("show");
-  }
-
-  return isValid;
-}
+const signIn_btn = document.getElementById("signIn_btn");
 
 // validate email address
-function emailInputValidation() {
+function emailInputValidation(emailInput, emailError) {
   let isValid = true;
   let regexTask = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/;
 
@@ -48,9 +26,9 @@ function emailInputValidation() {
   return isValid;
 }
 // validate password
-function passwordInputValidation() {
+function passwordInputValidation(passwordInput, passwordError) {
   let isValid = true;
-  let regexTask = /^.{8,}$/;
+  let regexTask = /^.{6,}$/;
   passwordError.classList.remove("show");
 
   if (!regexTask.test(passwordInput.value)) {
@@ -66,26 +44,35 @@ function passwordInputValidation() {
   return isValid;
 }
 
-// validate confirm password
-function confirmPasswordInputValidation() {
-  let isValid = true;
+// addEventListener to signIn dom Element
+emailInput?.addEventListener("input", function () {
+  emailInputValidation(emailInput, emailError);
+});
+passwordInput?.addEventListener("input", function () {
+  passwordInputValidation(passwordInput, passwordError);
+});
 
-  confirmPasswordError.classList.remove("show");
+signIn_btn?.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (
+    !emailInputValidation(emailInput, emailError) ||
+    !passwordInputValidation(passwordInput, passwordError)
+  )
+    return;
 
-  if (passwordInput.value !== confirmPassword.value) {
-    confirmPassword.classList.add("input-error");
-    confirmPasswordError.classList.add("show");
+  const userData = localStorage.getItem("user_" + emailInput.value);
 
-    isValid = false;
-  } else {
-    confirmPassword.classList.remove("input-error");
-    confirmPasswordError.classList.remove("show");
+  if (!userData) {
+    alert("the username does not exist.");
+    return;
   }
 
-  return isValid;
-}
+  const user = JSON.parse(userData);
+  if (password && user.password !== passwordInput.value) {
+    alert("password is incorrect.");
+    return;
+  }
+  console.log("log in");
+});
 
-userNameInput.addEventListener("input", userNameInputValidation);
-emailInput.addEventListener("input", emailInputValidation);
-passwordInput.addEventListener("input", passwordInputValidation);
-confirmPassword.addEventListener("input", confirmPasswordInputValidation);
+export { emailInputValidation, passwordInputValidation };
