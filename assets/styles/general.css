@@ -47,6 +47,16 @@ img {
   z-index: 1;
 }
 
+.navbar {
+  padding: 3.6rem 2.4rem 15rem;
+  position: relative;
+  z-index: 1;
+}
+.logo {
+  display: inline-block;
+  width: 14%;
+}
+
 /* overlay style */
 .overlay {
   content: "";
@@ -120,7 +130,7 @@ img {
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.1);
   border: none;
-  color: white;
+  color: var(--text-color-white);
   font-size: 2rem;
   cursor: pointer;
   z-index: 1;

@@ -139,8 +139,10 @@ function showMovieDetails({
   title,
   backdrop_path,
   profile_path,
+  poster_path,
   overview,
   vote_average,
+  popularity,
 }) {
   // Clear previous content
   MovieDetailsInfoBox.innerHTML = "";
@@ -172,16 +174,26 @@ function showMovieDetails({
   playLink.href = "#";
   playLink.textContent = "Play";
 
-  const trailerLink = document.createElement("a");
-  trailerLink.href = "#";
-  trailerLink.textContent = "Learn More";
-
+  const learnMoreLink = document.createElement("a");
+  learnMoreLink.href = "#";
+  learnMoreLink.textContent = "Learn More";
+  learnMoreLink.addEventListener("click", function () {
+    const url = `movieDetails.html?title=${encodeURIComponent(
+      name || title
+    )}&poster_path=${encodeURIComponent(
+      poster_path
+    )}&description=${encodeURIComponent(overview)}&rate=${encodeURIComponent(
+      vote_average
+    )}&views=${encodeURIComponent(popularity)}`;
+    window.location.href = url;
+    console.log("clicked.." + id);
+  });
   // Append elements to info box
   MovieDetailsInfoBox.appendChild(heading);
   MovieDetailsInfoBox.appendChild(description);
   MovieDetailsInfoBox.appendChild(rateContainer);
   MovieDetailsInfoBox.appendChild(playLink);
-  MovieDetailsInfoBox.appendChild(trailerLink);
+  MovieDetailsInfoBox.appendChild(learnMoreLink);
 
   // Create and append image
   const img = document.createElement("img");

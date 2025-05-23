@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="NETFLEX clone" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/img/netflix-favIcon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/styles/general.css" />
+  <link rel="stylesheet" href="../assets/styles/movieDetails.css" />
+  <title>NETFLIX CLONE | Movie Details</title>
+</head>
+
+<body>
+  <!-- nav logo -->
+  <header class="navbar">
+    <div class="container flex_container">
+      <a href="#" class="logo">
+        <img src="../assets/img/netflixClone-logo.svg" />
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="movie-details">
+      <div class="container">
+        <div class="movie-details__wrapper">
+          <div class="movie-details__info" id="movieInfo">
+            <!-- Render movie details from js  -->
+          </div>
+        </div>
+
+        <div class="movie-details_btns">
+          <button>Play</button>
+          <button>Download</button>
+          <button>+ My List</button>
+        </div>
+
+
+      </div>
+      </div>
+    </section>
+
+    <!-- Audience Reviews Section -->
+
+    <section class="audience-reviews">
+      <div class="container">
+        <div class="audience-reviews__btn">
+          <textarea id="comment" placeholder="Add your Review..."></textarea>
+          <button id="addReview_btn">Add Review</button>
+        </div>
+        <div class="audience-reviews__comments">
+          <h3>Audience Reviews</h3>
+          <div id="audienceReviews">
+            <!-- Audience Reviews -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+  <script src="../assets/js/movieDetails.js"></script>
+</body>
+
+</html>

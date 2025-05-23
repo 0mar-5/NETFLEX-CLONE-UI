@@ -1,0 +1,110 @@
+.navbar {
+  padding-bottom: 9rem;
+}
+
+.movie-details__info {
+  display: flex;
+}
+
+.movie-details__poster {
+  width: 48%;
+}
+
+.movie-details__content {
+  width: 51%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.movie-details__info img {
+  width: 70%;
+}
+
+.movie-details__content h2 {
+  font-size: 7.6rem;
+  font-weight: 700;
+}
+
+.movie-details__content p {
+  width: 75%;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  font-weight: 400;
+  padding-bottom: 4rem;
+}
+
+.movie-details__content h4 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+}
+.movie-details__content span {
+  padding-bottom: 3rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.movie-details_btns {
+  padding-top: 2rem;
+}
+button {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  border: none;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+button:hover {
+  background-color: var(--netflix-dark-red);
+  color: var(--text-color-white);
+}
+
+/* audience-reviews styles*/
+
+.audience-reviews {
+  padding-top: 4rem;
+}
+
+textarea {
+  width: 85%;
+  height: 9rem;
+  padding: 1.2rem 2rem;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #171616;
+  font-size: 1.6rem;
+  font-weight: 500;
+  resize: none;
+}
+
+.audience-reviews__btn {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.audience-reviews__comments {
+  padding-top: 3rem;
+}
+.audience-reviews__comments h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+}
+.audience-reviews__comments p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: white;
+  border: none;
+  padding: 1.2rem 2rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  background-color: #171616;
+}
