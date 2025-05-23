@@ -60,18 +60,28 @@ signIn_btn?.addEventListener("click", function (e) {
   )
     return;
 
-  const userData = localStorage.getItem("user_" + emailInput.value);
+  const savedUsers = localStorage.getItem("user_" + emailInput.value);
+  const users = savedUsers ? JSON.parse(savedUsers) : {};
 
-  if (!userData) {
-    alert("the username does not exist.");
+  console.log(savedUsers);
+
+  // Find the user by email
+  let user = users["user_" + emailInput.value];
+  console.log(user);
+  if (!user) {
+    alert("the Email does not exist.");
     return;
   }
 
-  const user = JSON.parse(userData);
-  if (password && user.password !== passwordInput.value) {
+  if (user.password !== passwordInput.value) {
     alert("password is incorrect.");
     return;
   }
+
+  const url = `home.html?userName=${encodeURIComponent(
+    user.name
+  )}&email=${encodeURIComponent(user.email)}`;
+  window.location.href = url;
   console.log("log in");
 });
 

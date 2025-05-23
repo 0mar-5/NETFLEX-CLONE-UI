@@ -66,6 +66,7 @@ signUpPasswordInput.addEventListener("input", function () {
 
 confirmPassword.addEventListener("input", confirmPasswordInputValidation);
 
+let users = {};
 signUpBtn.addEventListener("click", function (e) {
   e.preventDefault();
   if (
@@ -83,7 +84,8 @@ signUpBtn.addEventListener("click", function (e) {
     password: signUpPasswordInput.value,
   };
   console.log("work", usersInfo);
-  setToLocalStorage(`user_${usersInfo.email}`, usersInfo);
+  users[`user_${usersInfo.email}`] = usersInfo;
+  setToLocalStorage(`user_${usersInfo.email}`, users);
 
   // clear input values
   userNameInput.value = "";

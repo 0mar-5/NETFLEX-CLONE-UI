@@ -1,0 +1,121 @@
+/* Navbar style */
+
+.navbar {
+  padding: 3.6rem 2.4rem 4rem;
+}
+
+.logo {
+  display: inline-block;
+  width: 20%;
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.navbar__links__nav {
+  display: flex;
+  gap: 3rem;
+}
+.navbar__login {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navbar__login input {
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  border: none;
+  outline: none;
+}
+
+.navbar__login__details {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.user_img {
+  width: 6.4rem;
+}
+
+.navbar__login__details h4 {
+  width: 30%;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  padding: 2rem;
+}
+
+section {
+  padding-bottom: 5rem;
+}
+
+/* MovieDetails style */
+
+.MovieDetails {
+  padding-top: 1rem;
+}
+
+.MovieDetails__img {
+  position: relative;
+  border-radius: 8px;
+  margin-top: -10%;
+}
+
+.MovieDetails__img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.MovieDetails__info {
+  width: 57%;
+  position: absolute;
+  top: 40%;
+  left: 11%;
+  z-index: 2;
+}
+
+.MovieDetails__info h2 {
+  font-size: 7.6rem;
+  font-weight: 700;
+  padding: 20px 0;
+}
+
+.MovieDetails__info p {
+  width: inherit;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  font-weight: 400;
+  padding-bottom: 4rem;
+}
+
+.MovieDetails__info__rate {
+  padding-bottom: 3rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.MovieDetails__info a {
+  padding: 1rem 1.5rem;
+  margin-right: 2rem;
+  background-color: white;
+  color: black;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-radius: 4%;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="NETFLEX clone" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/img/netflix-favIcon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/styles/general.css" />
+  <link rel="stylesheet" href="../assets/styles/home.css" />
+  <title>NETFLIX CLONE | HOME</title>
+
+</head>
+
+<body>
+  <!-- navbar  -->
+  <header class="navbar">
+    <div class="container navbar__container">
+      <div class="navbar__links">
+        <a href="./index.html" class="logo">
+          <img src="../assets/img/netflixClone-logo.svg" alt="netflix clone logo" />
+        </a>
+
+        <nav>
+          <ul class="navbar__links__nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#tv-shows">TV Shows</a></li>
+            <li><a href="#movies">Movies</a></li>
+            <li><a href="#">News&Popular</a></li>
+            <li><a href="#">My List</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="navbar__login">
+        <div>
+          <input type="search" id="search" placeholder="Search..." />
+        </div>
+
+        <div class="navbar__login__details">
+          <div class="user_img">
+            <img src="../assets/img/profile.png" alt="user image" />
+          </div>
+          <h4 id="navbar__login__userName"></h4>
+          <a href="#" id="logout-btn">logout</a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Movie Details section -->
+    <section class="MovieDetails ">
+
+      <div class="MovieDetails__info">
+      </div>
+
+      <div class="MovieDetails__img">
+
+      </div>
+
+    </section>
+    <!-- overlay background -->
+    <div class="overlay"></div>
+
+    <!-- Trending Movies section -->
+    <section class="list" id="movies">
+      <div class="container">
+
+        <h2>Trending Movies</h2>
+
+        <div class="slider-container">
+          <button class="arrow left arrow_left">&#10094;</button>
+          <div class="slider" id="moviesCard">
+            <!-- render movies here from js -->
+          </div>
+          <button class="arrow right arrow_right">&#10095;</button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Top Rated Movies Of All time section -->
+    <section class="list">
+      <div class="container">
+
+        <h2>Top Rated Movies Of All time </h2>
+
+        <div class="slider-container">
+          <button class="arrow left arrow_left">&#10094;</button>
+          <div class="slider" id="topRated">
+            <!-- render tv here from js -->
+          </div>
+          <button class="arrow right arrow_right">&#10095;</button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Trending Tv shows section -->
+    <section class="list" id="tv-shows">
+      <div class="container">
+
+        <h2>Trending TV shows </h2>
+
+        <div class="slider-container">
+          <button class="arrow left arrow_left">&#10094;</button>
+          <div class="slider" id="tvCard">
+            <!-- render tv here from js -->
+          </div>
+          <button class="arrow right arrow_right">&#10095;</button>
+        </div>
+
+
+      </div>
+    </section>
+
+
+    <!-- Top Rated Tv Shows Of All time  -->
+    <section class="list">
+      <div class="container">
+
+        <h2>Top Rated Tv Shows Of All time </h2>
+
+        <div class="slider-container">
+          <button class="arrow left arrow_left">&#10094;</button>
+          <div class="slider" id="topRatedTv">
+            <!-- render tv here from js -->
+          </div>
+          <button class="arrow right arrow_right">&#10095;</button>
+        </div>
+
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <script src="../assets/js/home.js"></script>
+</body>
+
+</html>
