@@ -119,3 +119,120 @@ section {
   font-weight: 500;
   border-radius: 4%;
 }
+
+/* chat pot style */
+
+/* Circle button */
+#chatToggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(
+    326deg,
+    rgba(45, 7, 69, 1) 0%,
+    rgb(91 10 31) 61%,
+    rgb(157 5 25) 100%
+  );
+  color: var(--text-color-white);
+  font-size: 24px;
+  border: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+/* Chat container */
+#chatContainer {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background-color: #1e1f22;
+  border: 1px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 999;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+/* Show chat container */
+#chatContainer.active {
+  display: flex;
+  max-height: 330px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chatBox {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#chatInput {
+  display: flex;
+  border-top: 1px solid #000;
+}
+.chatBox div {
+  color: black;
+  width: 80%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  line-height: 20px;
+  color: white;
+}
+
+#chatInput input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #1e1f22;
+  color: white;
+}
+
+#chatInput button {
+  border: none;
+  background-color: var(--netflix-dark-red);
+  color: var(--text-color-white);
+  padding: 0 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#chatInput input:focus {
+  outline: none;
+}
+
+.bot {
+  background-color: #28303f;
+}
+.user {
+  background-color: #4b4f5b;
+}
+/* change scroll color */
+#chat-messages::-webkit-scrollbar-track {
+  background: #041409;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background-color: #042706;
+  border-radius: 8px;
+}
+
+#chat-messages {
+  scrollbar-color: #454644 #0f100f;
+  scrollbar-width: thin;
+}

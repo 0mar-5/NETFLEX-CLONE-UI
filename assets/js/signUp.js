@@ -82,10 +82,14 @@ signUpBtn.addEventListener("click", function (e) {
     name: userNameInput.value,
     email: signUpEmailInput.value,
     password: signUpPasswordInput.value,
+    isLoggedIn: false,
+    userComments: {},
   };
   console.log("work", usersInfo);
-  users[`user_${usersInfo.email}`] = usersInfo;
+  // users[`user_${usersInfo.email}`] = usersInfo;
+  users = usersInfo;
   setToLocalStorage(`user_${usersInfo.email}`, users);
+  console.log(users);
 
   // clear input values
   userNameInput.value = "";

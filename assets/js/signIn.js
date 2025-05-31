@@ -52,6 +52,7 @@ passwordInput?.addEventListener("input", function () {
   passwordInputValidation(passwordInput, passwordError);
 });
 
+// sign in logic
 signIn_btn?.addEventListener("click", function (e) {
   e.preventDefault();
   if (
@@ -61,13 +62,14 @@ signIn_btn?.addEventListener("click", function (e) {
     return;
 
   const savedUsers = localStorage.getItem("user_" + emailInput.value);
-  const users = savedUsers ? JSON.parse(savedUsers) : {};
+  const user = savedUsers ? JSON.parse(savedUsers) : {};
 
   console.log(savedUsers);
 
   // Find the user by email
-  let user = users["user_" + emailInput.value];
+  // let user = users["user_" + emailInput.value];
   console.log(user);
+
   if (!user) {
     alert("the Email does not exist.");
     return;
@@ -76,11 +78,16 @@ signIn_btn?.addEventListener("click", function (e) {
   if (user.password !== passwordInput.value) {
     alert("password is incorrect.");
     return;
+  } else {
+    user.isLoggedIn = true;
+    console.log(user);
   }
+
+  localStorage.setItem("user_" + emailInput.value, JSON.stringify(user));
 
   const url = `home.html?userName=${encodeURIComponent(
     user.name
-  )}&email=${encodeURIComponent(user.email)}`;
+  )}&email=${encodeURIComponent(user.email)}&isLoggedIn=${user.isLoggedIn}`;
   window.location.href = url;
   console.log("log in");
 });

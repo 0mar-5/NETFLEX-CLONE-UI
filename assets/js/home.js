@@ -1,3 +1,5 @@
+import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+// get Dom Elements
 const moviesCard = document.getElementById("moviesCard");
 const tvCard = document.getElementById("tvCard");
 const topRatedCard = document.getElementById("topRated");
@@ -14,22 +16,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const userName = params.get("userName");
   const userEmail = params.get("email");
-  loginUserName.textContent = userName;
-  const savedUsers = localStorage.getItem("user_" + userEmail);
-  const user = savedUsers ? JSON.parse(savedUsers) : {};
-  const localStorageEmail = user["user_" + `${userEmail}`]?.email;
+  const isLoggedIn = params.get("isLoggedIn");
 
-  // log out if the user email does not match the user email in local storage
-  if (!localStorageEmail || localStorageEmail !== userEmail) {
+  // Display user name in UI
+  loginUserName.textContent = userName;
+
+  // Get user from localStorage
+  const userData = localStorage.getItem("user_" + userEmail);
+  const user = userData ? JSON.parse(userData) : null;
+  // Redirect if user not found
+  if (!user || user.email !== userEmail || !isLoggedIn) {
     window.location.href = "index.html";
+    return;
   }
+
+  // Logout logic
   logoutBtn.addEventListener("click", function () {
-    // redirect to sign in page
+    // Set isLoggedIn = false
+    user.isLoggedIn = false;
+
+    // Save updated user back to localStorage
+    localStorage.setItem("user_" + userEmail, JSON.stringify(user));
+
+    // Redirect to sign in page
     window.location.href = "index.html";
   });
 });
-// select all slider contanier
-const sliderContanier = document.querySelectorAll(".slider");
+
 // select all left arrows
 const allGoBackBtn = document.querySelectorAll(".arrow_left");
 // select all right arrows
@@ -185,7 +198,7 @@ function showMovieDetails({
     )}&description=${encodeURIComponent(overview)}&rate=${encodeURIComponent(
       vote_average
     )}&views=${encodeURIComponent(popularity)}`;
-    window.location.href = url;
+    window.open(url, "_blank");
     console.log("clicked.." + id);
   });
   // Append elements to info box
@@ -209,3 +222,146 @@ function showMovieDetails({
 
   console.log("Movie ID:", id, "Name/Title:", name || title);
 }
+
+// chat pot Dom Elements
+const chatToggle = document.getElementById("chatToggle");
+const chatContainer = document.getElementById("chatContainer");
+const chatMessagesContainer = document.getElementById("chat-messages");
+const sendButton = document.getElementById("send-btn");
+const userInputElement = document.getElementById("userInput");
+
+// --- Gemini Variables ---
+let genAIInstance;
+let model;
+
+const API_KEY = "AIzaSyAnfDyYgefGWf3RVba9XOn7UHpG5SNd4qc";
+
+// Function to initialize the Gemini model
+function initializeGemini(apiKeyToUse) {
+  if (!apiKeyToUse) {
+    addMessage("API Key is missing. Cannot initialize Gemini.", "bot-error");
+    model = null;
+    return false;
+  }
+  try {
+    genAIInstance = new GoogleGenerativeAI(apiKeyToUse);
+    model = genAIInstance.getGenerativeModel({
+      model: "gemini-1.5-flash-latest",
+    });
+    addMessage("Chatbot initialized. How can I help?", "bot");
+    return true;
+  } catch (error) {
+    console.error("Error initializing Gemini:", error);
+    addMessage(
+      `Error initializing Gemini: ${error.message}. Please check API Key.`,
+      "bot-error"
+    );
+    model = null;
+    return false;
+  }
+}
+
+// handle messages
+async function handleSendMessage() {
+  const userInputText = userInputElement.value.trim();
+  if (!userInputText) return;
+
+  // Initialize Gemini if not already, or if API key changed (though API_KEY is constant here)
+  if (!model || (genAIInstance && genAIInstance.apiKey !== API_KEY)) {
+    // genAIInstance.apiKey is not a public property, this check might not be robust
+    if (!initializeGemini(API_KEY)) {
+      addMessage(
+        "Failed to initialize the chatbot. Please check the API Key.",
+        "bot-error"
+      );
+      return; // Initialization failed
+    }
+  }
+  // Double check model is initialized after attempt
+  if (!model) {
+    addMessage(
+      "Gemini model is not initialized. Please check API key and console.",
+      "bot-error"
+    );
+    return;
+  }
+
+  // add user message to chat
+  addMessage(userInputText, "user");
+  // clear input filed
+  userInputElement.value = "";
+
+  try {
+    addMessage("Thinking...", "bot-loading"); // Show a thinking indicator
+
+    // --- Call Gemini API ---
+    const result = await model.generateContent(userInputText); // Pass the user's text directly
+    const geminiResponse = await result.response;
+    const textResponse = geminiResponse.text();
+
+    // Remove "Thinking..." message before adding the actual response
+    const thinkingMessage = chatMessagesContainer.querySelector(".bot-loading");
+    if (thinkingMessage) thinkingMessage.remove();
+
+    console.log("Gemini text response:", textResponse);
+    addMessage(textResponse, "bot");
+  } catch (error) {
+    console.error("Error generating content with Gemini:", error);
+    // Remove "Thinking..." message if it exists on error
+    const thinkingMessage = chatMessagesContainer.querySelector(".bot-loading");
+    if (thinkingMessage) thinkingMessage.remove();
+
+    let errorMessage = "Sorry, I encountered an error.";
+    if (error.message && error.message.toLowerCase().includes("quota")) {
+      errorMessage =
+        "API quota exceeded. Please check your Google AI Studio or Cloud Console.";
+    } else if (
+      error.message &&
+      error.message.toLowerCase().includes("api key not valid")
+    ) {
+      errorMessage = "The API key is not valid. Please check it.";
+    } else if (error.message) {
+      errorMessage = `Error: ${error.message}`;
+    }
+    addMessage(errorMessage, "bot-error");
+  }
+}
+
+// add message to users
+function addMessage(text, sender) {
+  if (!chatMessagesContainer) {
+    console.error("Chat messages container not found!");
+    return;
+  }
+  // create div element
+  const messageDiv = document.createElement("div");
+  // sender will be 'user', 'bot', 'bot-error', 'bot-loading'
+  // the class list will apple css style to the added message
+  messageDiv.classList.add("chat-message", sender);
+  messageDiv.textContent = text;
+  // add message to chat container
+  chatMessagesContainer.appendChild(messageDiv);
+  // scroll down to show messages
+  chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+}
+
+// --- Event Listeners ---
+if (sendButton) {
+  sendButton.addEventListener("click", handleSendMessage);
+} else {
+  console.error("Send button not found.");
+}
+
+if (userInputElement) {
+  userInputElement.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      handleSendMessage();
+    }
+  });
+}
+
+// open - close chat
+chatToggle.addEventListener("click", () => {
+  chatContainer.style.display =
+    chatContainer.style.display === "none" ? "flex" : "none";
+});
