@@ -12,6 +12,8 @@ This is a Netflix-inspired user interface built using **HTML**, **CSS**, and **J
 - Dynamic content rendering with JavaScript
 - UI components: navigation bar, banner, movie sliders/grids
 - Smooth hover effects and animations
+- 💬 **Movie reviews** stored and retrieved using `JSON Server`.
+- 🤖 **AI Integration** using the **Gemini AI** model for interactive features .
 
 ## 🛠️ Built With
 
