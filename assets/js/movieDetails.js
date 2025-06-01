@@ -68,6 +68,10 @@ const textArea = document.getElementById("comment");
 // add review to movie
 addReview_btn.addEventListener("click", async function (e) {
   e.preventDefault();
+  if (textArea.value.length < 2) {
+    alert("Review must be at least 2 characters long.");
+    return;
+  }
   const review = {
     id: Date.now().toString(),
     movieId: movieId,

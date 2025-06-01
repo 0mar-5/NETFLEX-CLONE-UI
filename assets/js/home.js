@@ -283,7 +283,6 @@ function initializeGemini(apiKeyToUse) {
     addMessage("Chatbot initialized. How can I help?", "bot");
     return true;
   } catch (error) {
-    console.error("Error initializing Gemini:", error);
     addMessage(
       `Error initializing Gemini: ${error.message}. Please check API Key.`,
       "bot-error"
@@ -335,10 +334,8 @@ async function handleSendMessage() {
     const thinkingMessage = chatMessagesContainer.querySelector(".bot-loading");
     if (thinkingMessage) thinkingMessage.remove();
 
-    console.log("Gemini text response:", textResponse);
     addMessage(textResponse, "bot");
   } catch (error) {
-    console.error("Error generating content with Gemini:", error);
     // Remove "Thinking..." message if it exists on error
     const thinkingMessage = chatMessagesContainer.querySelector(".bot-loading");
     if (thinkingMessage) thinkingMessage.remove();

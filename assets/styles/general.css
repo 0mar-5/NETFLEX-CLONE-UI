@@ -150,3 +150,10 @@ img {
 .arrow.right {
   right: -5%;
 }
+
+/* media query */
+@media (max-width: 1300px) {
+  .container {
+    width: 90%;
+  }
+}

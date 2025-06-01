@@ -161,7 +161,7 @@ section {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: 300px;
+  width: 33rem;
   background-color: #1e1f22;
   border: 1px solid #000;
   border-radius: 10px;
@@ -182,7 +182,7 @@ section {
 .chatBox {
   flex: 1;
   padding: 1rem;
-  overflow-y: auto;
+  overflow-y: scroll;
   font-size: 14px;
 }
 
@@ -192,7 +192,7 @@ section {
 }
 .chatBox div {
   color: black;
-  width: 80%;
+  width: 85%;
   border-radius: 8px;
   border: 1px solid #ccc;
   margin: 0 auto;
@@ -231,18 +231,24 @@ section {
   background-color: #4b4f5b;
 }
 /* change scroll color */
-#chat-messages::-webkit-scrollbar-track {
+.chatBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chatBox::-webkit-scrollbar-track {
   background: #041409;
 }
 
-#chat-messages::-webkit-scrollbar-thumb {
+.chatBox::-webkit-scrollbar-thumb {
   background-color: #042706;
   border-radius: 8px;
 }
 
-#chat-messages {
+.chatBox {
   scrollbar-color: #454644 #0f100f;
   scrollbar-width: thin;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 #search_movies {
