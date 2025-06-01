@@ -12,6 +12,9 @@ const logoutBtn = document.getElementById("logout-btn");
 
 const loginUserName = document.getElementById("navbar__login__userName");
 
+const searchValue = document.getElementById("search");
+const mainPage = document.querySelector(".main");
+
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const userName = params.get("userName");
@@ -98,6 +101,21 @@ async function fetchMovies(url) {
   }
 }
 
+let debounceTimeout;
+
+searchValue.addEventListener("input", function () {
+  clearTimeout(debounceTimeout);
+
+  debounceTimeout = setTimeout(async function () {
+    const query = searchValue.value.trim();
+    if (query === "") return;
+    const searchResult = await fetchMovies(
+      `https://api.themoviedb.org/3/search/movie?query=${query}&page=1`
+    );
+    console.log(searchResult);
+    renderMovies(searchResult, mainPage);
+  }, 700);
+});
 function renderMovies(moviesArr, position) {
   position.innerHTML = "";
 
@@ -140,6 +158,7 @@ async function fetchAndRenderAll() {
   const topRatedTvShows = await fetchMovies(
     "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1"
   );
+
   console.log(topRatedTvShows);
   renderMovies(topRatedTvShows, topRatedTv);
 }
@@ -191,7 +210,11 @@ function showMovieDetails({
   learnMoreLink.href = "#";
   learnMoreLink.textContent = "Learn More";
   learnMoreLink.addEventListener("click", function () {
-    const url = `movieDetails.html?title=${encodeURIComponent(
+    const params = new URLSearchParams(window.location.search);
+    const userName = params.get("userName");
+    const url = `movieDetails.html?&userName=${encodeURIComponent(
+      userName
+    )}&movieId=${encodeURIComponent(id)}&title=${encodeURIComponent(
       name || title
     )}&poster_path=${encodeURIComponent(
       poster_path

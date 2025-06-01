@@ -24,6 +24,9 @@
   display: flex;
   gap: 3rem;
 }
+.navbar__links__nav a:hover {
+  color: var(--netflix-dark-red);
+}
 .navbar__login {
   display: flex;
   align-items: center;

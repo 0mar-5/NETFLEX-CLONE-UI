@@ -98,7 +98,11 @@ textarea {
   padding-bottom: 2rem;
   padding-left: 1rem;
 }
-.audience-reviews__comments p {
+
+#audienceReviews div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.6rem;
   font-weight: 500;
   color: white;

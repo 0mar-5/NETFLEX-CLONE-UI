@@ -66,8 +66,6 @@ signIn_btn?.addEventListener("click", function (e) {
 
   console.log(savedUsers);
 
-  // Find the user by email
-  // let user = users["user_" + emailInput.value];
   console.log(user);
 
   if (!user) {
