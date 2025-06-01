@@ -15,13 +15,16 @@ const loginUserName = document.getElementById("navbar__login__userName");
 const searchValue = document.getElementById("search");
 const search_movies = document.querySelector("#search_movies");
 const mainPageWrapper = document.querySelector(".mainMovies_wrapper");
+const myFavoritesList = document.getElementById("favoritesList_btn");
+const myListContainer = document.getElementById("myList");
+const favoritesListWrapper = document.getElementById("favoritesList");
+
+const params = new URLSearchParams(window.location.search);
+const userName = params.get("userName");
+const userEmail = params.get("email");
+const isLoggedIn = params.get("isLoggedIn");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const userName = params.get("userName");
-  const userEmail = params.get("email");
-  const isLoggedIn = params.get("isLoggedIn");
-
   // Display user name in UI
   loginUserName.textContent = userName;
 
@@ -118,7 +121,7 @@ searchValue.addEventListener("input", function () {
     mainPageWrapper.style.display = "none";
     // render searched items
     renderMovies(searchResult, search_movies);
-  }, 700);
+  }, 500);
   // clear the search
   search_movies.innerHTML = "";
   // show the main page details
@@ -166,8 +169,6 @@ async function fetchAndRenderAll() {
   const topRatedTvShows = await fetchMovies(
     "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1"
   );
-
-  console.log(topRatedTvShows);
   renderMovies(topRatedTvShows, topRatedTv);
 }
 
@@ -222,7 +223,9 @@ function showMovieDetails({
     const userName = params.get("userName");
     const url = `movieDetails.html?&userName=${encodeURIComponent(
       userName
-    )}&movieId=${encodeURIComponent(id)}&title=${encodeURIComponent(
+    )}&userEmail=${encodeURIComponent(userEmail)}&movieId=${encodeURIComponent(
+      id
+    )}&title=${encodeURIComponent(
       name || title
     )}&poster_path=${encodeURIComponent(
       poster_path
@@ -250,8 +253,6 @@ function showMovieDetails({
 
   // Scroll to top of movie details
   window.scrollTo({ top: 0, behavior: "smooth" });
-
-  console.log("Movie ID:", id, "Name/Title:", name || title);
 }
 
 // chat pot Dom Elements
@@ -395,4 +396,42 @@ if (userInputElement) {
 chatToggle.addEventListener("click", () => {
   chatContainer.style.display =
     chatContainer.style.display === "none" ? "flex" : "none";
+});
+
+// get user favorites moveis from localStorage
+function getUserFromStorage(userEmail) {
+  const userKey = `user_${userEmail}`;
+  const user = JSON.parse(localStorage.getItem(userKey));
+
+  if (!user) {
+    console.error(`No user found with email: ${userEmail}`);
+    return null;
+  }
+
+  return user.userFavorites;
+}
+// render all favorites movies
+myFavoritesList.addEventListener("click", async function () {
+  const userFavoritesArray = getUserFromStorage(userEmail);
+  if (!userFavoritesArray || userFavoritesArray.length === 0) {
+    favoritesListWrapper.style.display = "block";
+    myListContainer.innerHTML = "<p>No favorites found.</p>";
+    return;
+  }
+  favoritesListWrapper.style.display = "block";
+  myListContainer.innerHTML = "";
+  // Fetch all favorite movies
+  const favMoviesArray = await Promise.all(
+    userFavoritesArray.map(async (movieId) => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}`,
+        options
+      );
+      if (!response.ok) return null;
+      return await response.json();
+    })
+  );
+  // Filter out any failed fetches (nulls)
+  const validMovies = favMoviesArray.filter(Boolean);
+  renderMovies(validMovies, myListContainer);
 });

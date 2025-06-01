@@ -254,3 +254,7 @@ section {
   padding-bottom: 5rem;
   gap: 1rem;
 }
+
+#favoritesList {
+  display: none;
+}

@@ -83,7 +83,7 @@ signUpBtn.addEventListener("click", function (e) {
     email: signUpEmailInput.value,
     password: signUpPasswordInput.value,
     isLoggedIn: false,
-    userComments: {},
+    userFavorites: [],
   };
   console.log("work", usersInfo);
   // users[`user_${usersInfo.email}`] = usersInfo;

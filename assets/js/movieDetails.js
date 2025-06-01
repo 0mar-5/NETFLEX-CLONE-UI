@@ -1,7 +1,10 @@
-// get movie details from url whene page load
+// get Dom elements
+const addToFavoritesBtn = document.getElementById("addToFavorites_btn");
 
+// get movie details from url whene page load
 const params = new URLSearchParams(window.location.search);
 const userName = params.get("userName");
+const userEmail = params.get("userEmail");
 const movieId = params.get("movieId");
 const title = params.get("title");
 const poster_path = params.get("poster_path");
@@ -62,6 +65,7 @@ function renderMovieDetails(title, poster_path, description, rate, views) {
 const addReview_btn = document.getElementById("addReview_btn");
 const audienceReviewsContainer = document.getElementById("audienceReviews");
 const textArea = document.getElementById("comment");
+// add review to movie
 addReview_btn.addEventListener("click", async function (e) {
   e.preventDefault();
   const review = {
@@ -143,3 +147,22 @@ async function fetchUsersReviews() {
     console.error("Error something went wrong !", error);
   }
 }
+// add to favorite list
+function addFavoriteToUser(userEmail, movieId) {
+  // Get the user object from localStorage
+  const userKey = `user_${userEmail}`;
+  const user = JSON.parse(localStorage.getItem(userKey));
+
+  // Avoid duplicates
+  if (!user.userFavorites.includes(movieId)) {
+    user.userFavorites.push(movieId);
+    localStorage.setItem(userKey, JSON.stringify(user));
+    alert(`Movie added to ${user.name}'s favorites.`);
+  } else {
+    alert("Movie already in favorites.");
+  }
+}
+
+addToFavoritesBtn.addEventListener("click", function () {
+  addFavoriteToUser(userEmail, movieId);
+});

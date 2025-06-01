@@ -1,0 +1,36 @@
+{
+  "reviews": [
+    {
+      "id": "1748789839258",
+      "movieId": "1233413",
+      "usersReviews": {
+        "userName": "Omar",
+        "userReview": "this is a great movie"
+      }
+    },
+    {
+      "id": "1748789937015",
+      "movieId": "414906",
+      "usersReviews": {
+        "userName": "Omar",
+        "userReview": "This is a good movie"
+      }
+    },
+    {
+      "id": "1748790118301",
+      "movieId": "771",
+      "usersReviews": {
+        "userName": "Omar",
+        "userReview": "childhood nostalgia"
+      }
+    },
+    {
+      "id": "1748790694075",
+      "movieId": "1233413",
+      "usersReviews": {
+        "userName": "Ahmed",
+        "userReview": "very good"
+      }
+    }
+  ]
+}

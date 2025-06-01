@@ -43,7 +43,6 @@ async function fetchMovies(type = "all", time = "day") {
     const moviesArray = data.results;
     const topTenMovies = moviesArray.slice(0, 10);
     renderTrendingMovies(topTenMovies);
-    console.log(moviesArray.slice(10));
   } catch (err) {
     console.error("Failed to fetch movies:", err);
   }
