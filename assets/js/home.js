@@ -18,6 +18,7 @@ const mainPageWrapper = document.querySelector(".mainMovies_wrapper");
 const myFavoritesList = document.getElementById("favoritesList_btn");
 const myListContainer = document.getElementById("myList");
 const favoritesListWrapper = document.getElementById("favoritesList");
+const trailerOverlay = document.querySelector("#trailerOverlay");
 
 const params = new URLSearchParams(window.location.search);
 const userName = params.get("userName");
@@ -127,6 +128,7 @@ searchValue.addEventListener("input", function () {
   // show the main page details
   mainPageWrapper.style.display = "block";
 });
+
 function renderMovies(moviesArr, position) {
   position.innerHTML = "";
 
@@ -174,6 +176,19 @@ async function fetchAndRenderAll() {
 
 fetchAndRenderAll();
 
+async function getMovieTrailer(movieId) {
+  const movieTrailer = await fetchMovies(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos`
+  );
+  // Filter for official YouTube trailers
+  const trailer = movieTrailer.find(
+    (vid) =>
+      vid.type === "Trailer" && vid.site === "YouTube" && vid.official === true
+  );
+
+  return trailer ? `https://www.youtube.com/embed/${trailer.key}` : null;
+}
+
 function showMovieDetails({
   id,
   name,
@@ -213,8 +228,30 @@ function showMovieDetails({
   // Create buttons/links
   const playLink = document.createElement("a");
   playLink.href = "#";
-  playLink.textContent = "Play";
+  playLink.textContent = "Play Trailer";
+  playLink.addEventListener("click", async function () {
+    const movieTrailerUrl = await getMovieTrailer(id);
+    if (!movieTrailerUrl) {
+      alert("Trailer not available.");
+      return;
+    }
+    const trailerIframe = document.getElementById("trailerIframe");
+    const closeTrailerBtn = document.getElementById("closeTrailerBtn");
+    trailerIframe.src = movieTrailerUrl;
+    // Show the overlay
+    trailerOverlay.style.display = "flex";
 
+    // Add close functionality
+    closeTrailerBtn.addEventListener("click", () => {
+      trailerOverlay.style.display = "none";
+    });
+    // Close overlay when clicking outside the content
+    trailerOverlay.addEventListener("click", (e) => {
+      if (e.target === trailerOverlay) {
+        trailerOverlay.style.display = "none";
+      }
+    });
+  });
   const learnMoreLink = document.createElement("a");
   learnMoreLink.href = "#";
   learnMoreLink.textContent = "Learn More";
