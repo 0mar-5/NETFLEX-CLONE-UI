@@ -121,6 +121,11 @@ section {
   font-size: 1.6rem;
   font-weight: 500;
   border-radius: 4%;
+  transition: all 0.2s ease;
+}
+.MovieDetails__info a:hover {
+  background-color: var(--netflix-dark-red);
+  color: var(--text-color-white);
 }
 
 /* chat pot style */
@@ -238,4 +243,14 @@ section {
 #chat-messages {
   scrollbar-color: #454644 #0f100f;
   scrollbar-width: thin;
+}
+
+#search_movies {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 10;
+  padding-bottom: 5rem;
+  gap: 1rem;
 }

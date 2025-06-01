@@ -69,94 +69,98 @@
     </section>
     <!-- overlay background -->
     <div class="overlay"></div>
+    <!-- searched movies -->
+    <div id="search_movies">
 
+    </div>
     <!-- Trending Movies section -->
-    <section class="list" id="movies">
-      <div class="container">
+    <div class="mainMovies_wrapper">
+      <section class="list" id="movies">
+        <div class="container">
 
-        <h2>Trending Movies</h2>
+          <h2>Trending Movies</h2>
 
-        <div class="slider-container">
-          <button class="arrow left arrow_left">&#10094;</button>
-          <div class="slider" id="moviesCard">
-            <!-- render movies here from js -->
+          <div class="slider-container">
+            <button class="arrow left arrow_left">&#10094;</button>
+            <div class="slider" id="moviesCard">
+              <!-- render movies here from js -->
+            </div>
+            <button class="arrow right arrow_right">&#10095;</button>
           </div>
-          <button class="arrow right arrow_right">&#10095;</button>
+
         </div>
-
-      </div>
-    </section>
+      </section>
 
 
-    <!-- Top Rated Movies Of All time section -->
-    <section class="list">
-      <div class="container">
+      <!-- Top Rated Movies Of All time section -->
+      <section class="list">
+        <div class="container">
 
-        <h2>Top Rated Movies Of All time </h2>
+          <h2>Top Rated Movies Of All time </h2>
 
-        <div class="slider-container">
-          <button class="arrow left arrow_left">&#10094;</button>
-          <div class="slider" id="topRated">
-            <!-- render tv here from js -->
+          <div class="slider-container">
+            <button class="arrow left arrow_left">&#10094;</button>
+            <div class="slider" id="topRated">
+              <!-- render tv here from js -->
+            </div>
+            <button class="arrow right arrow_right">&#10095;</button>
           </div>
-          <button class="arrow right arrow_right">&#10095;</button>
+
         </div>
-
-      </div>
-    </section>
+      </section>
 
 
-    <!-- Trending Tv shows section -->
-    <section class="list" id="tv-shows">
-      <div class="container">
+      <!-- Trending Tv shows section -->
+      <section class="list" id="tv-shows">
+        <div class="container">
 
-        <h2>Trending TV shows </h2>
+          <h2>Trending TV shows </h2>
 
-        <div class="slider-container">
-          <button class="arrow left arrow_left">&#10094;</button>
-          <div class="slider" id="tvCard">
-            <!-- render tv here from js -->
+          <div class="slider-container">
+            <button class="arrow left arrow_left">&#10094;</button>
+            <div class="slider" id="tvCard">
+              <!-- render tv here from js -->
+            </div>
+            <button class="arrow right arrow_right">&#10095;</button>
           </div>
-          <button class="arrow right arrow_right">&#10095;</button>
+
+
         </div>
+      </section>
 
 
-      </div>
-    </section>
+      <!-- Top Rated Tv Shows Of All time  -->
+      <section class="list">
+        <div class="container">
 
+          <h2>Top Rated Tv Shows Of All time </h2>
 
-    <!-- Top Rated Tv Shows Of All time  -->
-    <section class="list">
-      <div class="container">
-
-        <h2>Top Rated Tv Shows Of All time </h2>
-
-        <div class="slider-container">
-          <button class="arrow left arrow_left">&#10094;</button>
-          <div class="slider" id="topRatedTv">
-            <!-- render tv here from js -->
+          <div class="slider-container">
+            <button class="arrow left arrow_left">&#10094;</button>
+            <div class="slider" id="topRatedTv">
+              <!-- render tv here from js -->
+            </div>
+            <button class="arrow right arrow_right">&#10095;</button>
           </div>
-          <button class="arrow right arrow_right">&#10095;</button>
+
+
         </div>
+      </section>
+      <!-- chat pot -->
+      <section>
+        <button id="chatToggle">🤖</button>
 
-
-      </div>
-    </section>
-    <!-- chat pot -->
-    <section>
-      <button id="chatToggle">🤖</button>
-
-      <div id="chatContainer">
-        <div id="chat-messages" class="chatBox chat-messages">
-          <!-- chat message  -->
+        <div id="chatContainer">
+          <div id="chat-messages" class="chatBox chat-messages">
+            <!-- chat message  -->
+          </div>
+          <div id="chatInput">
+            <input type="text" id="userInput" placeholder="Type a message..." />
+            <button id="send-btn">Send</button>
+          </div>
         </div>
-        <div id="chatInput">
-          <input type="text" id="userInput" placeholder="Type a message..." />
-          <button id="send-btn">Send</button>
-        </div>
-      </div>
-    </section>
-
+      </section>
+    </div>
   </main>
 
 

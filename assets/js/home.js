@@ -13,7 +13,8 @@ const logoutBtn = document.getElementById("logout-btn");
 const loginUserName = document.getElementById("navbar__login__userName");
 
 const searchValue = document.getElementById("search");
-const mainPage = document.querySelector(".main");
+const search_movies = document.querySelector("#search_movies");
+const mainPageWrapper = document.querySelector(".mainMovies_wrapper");
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
@@ -102,7 +103,7 @@ async function fetchMovies(url) {
 }
 
 let debounceTimeout;
-
+// search for movies
 searchValue.addEventListener("input", function () {
   clearTimeout(debounceTimeout);
 
@@ -113,8 +114,15 @@ searchValue.addEventListener("input", function () {
       `https://api.themoviedb.org/3/search/movie?query=${query}&page=1`
     );
     console.log(searchResult);
-    renderMovies(searchResult, mainPage);
+    // clear the page
+    mainPageWrapper.style.display = "none";
+    // render searched items
+    renderMovies(searchResult, search_movies);
   }, 700);
+  // clear the search
+  search_movies.innerHTML = "";
+  // show the main page details
+  mainPageWrapper.style.display = "block";
 });
 function renderMovies(moviesArr, position) {
   position.innerHTML = "";
@@ -196,7 +204,7 @@ function showMovieDetails({
   rateLabel.textContent = "Rate : ";
 
   const rateValue = document.createElement("span");
-  rateValue.textContent = `${vote_average}/10`;
+  rateValue.textContent = `${vote_average.toFixed(1)}/10`;
 
   rateContainer.appendChild(rateLabel);
   rateContainer.appendChild(rateValue);
